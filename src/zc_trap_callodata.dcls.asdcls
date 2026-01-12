@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_TRAP_CALLODATA'
+@MappingRole: true
+define role ZC_TRAP_CALLODATA {
+  grant select on ZC_TRAP_CALLODATA
+  where INHERITING CONDITIONS FROM ENTITY ZR_TRAP_CALLODATA REPLACING { ROOT WITH _BaseEntity };
+}

@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_TRAP_CALLODATA'
+@MappingRole: true
+define role ZR_TRAP_CALLODATA {
+  grant select on ZR_TRAP_CALLODATA
+  where TRUE;
+}

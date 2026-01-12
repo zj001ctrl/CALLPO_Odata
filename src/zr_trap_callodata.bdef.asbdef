@@ -1,0 +1,57 @@
+managed implementation in class ZBP_R_TRAP_CALLODATA unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_TRAP_CALLODATA alias ZrTrapCallodata
+persistent table ztrap_callodata
+extensible
+draft table ztrap_cllodata_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+{
+  field ( readonly )
+  UUID,
+  CreatedBy,
+  CreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  UUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  action get;
+  action post;
+  side effects
+  {
+    action get affects $self;
+    action post affects $self;
+  }
+
+  mapping for ztrap_callodata corresponding extensible
+    {
+      UUID               = uuid;
+      Purchaseorder      = purchaseorder;
+      Response           = response;
+      Status             = status;
+      Criticality        = criticality;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}

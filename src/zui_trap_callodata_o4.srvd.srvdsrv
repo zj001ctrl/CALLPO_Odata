@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_TRAP_CALLODATA'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_TRAP_CALLODATA'
+  }
+}
+define service ZUI_TRAP_CALLODATA_O4 provider contracts odata_v4_ui {
+  expose ZC_TRAP_CALLODATA;
+}

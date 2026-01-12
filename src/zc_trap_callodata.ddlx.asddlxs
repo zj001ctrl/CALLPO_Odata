@@ -1,0 +1,47 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'UUID'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'UUID'
+annotate view ZC_TRAP_CALLODATA with
+{
+  @UI.facet: [ {
+    label: 'Request Information',
+    id: 'request',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #FIELDGROUP_REFERENCE,
+    targetQualifier: 'request'
+  },
+  {
+    label: 'Response Information',
+    id: 'response',
+    purpose: #STANDARD,
+    position: 20 ,
+    type: #FIELDGROUP_REFERENCE,
+    targetQualifier: 'response'
+  } ]
+ 
+  @UI.identification: [{ type: #FOR_ACTION,dataAction: 'get',position: 10,label: 'Get' },
+                       { type: #FOR_ACTION,dataAction: 'post',position: 20,label: 'Post' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'request' }]
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  Purchaseorder;
+ 
+  @EndUserText.label: 'Response'
+  @UI.fieldGroup: [{ position: 10 , qualifier: 'response', label: 'Response' }]
+  @UI.lineItem: [{ position: 40 , label: 'Response' }]
+  @UI.multiLineText: true
+  Response;
+ 
+  @EndUserText.label: 'Status'
+  @UI.fieldGroup: [{ position: 30 , label: 'Status', qualifier: 'request' }]
+  @UI.lineItem: [{ position: 30 , label: 'Status' ,criticality:'Criticality',
+  criticalityRepresentation: #WITH_ICON }]
+  Status;
+
+
+  
+ 
+}
