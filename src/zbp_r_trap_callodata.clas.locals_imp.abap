@@ -10,6 +10,12 @@ CLASS lhc_zr_trap_callodata DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS post FOR MODIFY
       IMPORTING keys FOR ACTION ZrTrapCallodata~post.
+    METHODS Batchpost FOR MODIFY
+      IMPORTING keys FOR ACTION ZrTrapCallodata~Batchpost RESULT result.
+
+
+
+
 ENDCLASS.
 
 CLASS lhc_zr_trap_callodata IMPLEMENTATION.
@@ -131,6 +137,8 @@ CLASS lhc_zr_trap_callodata IMPLEMENTATION.
          RESULT DATA(results).
     DELETE results WHERE purchaseorder IS INITIAL.
     CHECK results IS NOT INITIAL.
+
+
     READ TABLE results ASSIGNING FIELD-SYMBOL(<result>) INDEX 1.
 
 
@@ -319,6 +327,25 @@ CLASS lhc_zr_trap_callodata IMPLEMENTATION.
         FAILED failed
         MAPPED mapped
         REPORTED reported.
+
+  ENDMETHOD.
+
+  METHOD Batchpost.
+  DATA:
+      lv_uuid   TYPE sysuuid_x16,
+      lv_poid   TYPE ebeln,
+      lv_status TYPE string.
+
+    READ ENTITIES OF zr_trap_callodata IN LOCAL MODE
+    ENTITY ZrTrapCallodata
+    ALL FIELDS WITH CORRESPONDING #( keys )
+    RESULT DATA(results).
+
+    LOOP AT results ASSIGNING FIELD-SYMBOL(<ls_results>).
+      lv_uuid = <ls_results>-uuid.
+      lv_poid = <ls_results>-Purchaseorder.
+      lv_status = <ls_results>-Status.
+    ENDLOOP.
 
   ENDMETHOD.
 

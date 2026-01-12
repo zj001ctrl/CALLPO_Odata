@@ -25,7 +25,8 @@ annotate view ZC_TRAP_CALLODATA with
   @UI.identification: [{ type: #FOR_ACTION,dataAction: 'get',position: 10,label: 'Get' },
                        { type: #FOR_ACTION,dataAction: 'post',position: 20,label: 'Post' }]
   @UI.fieldGroup: [{ position: 20, qualifier: 'request' }]
-  @UI.lineItem: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20 } ,
+  { type: #FOR_ACTION,dataAction: 'Batchpost',position: 20,label: 'Batchpost',invocationGrouping: #CHANGE_SET }]
   @UI.selectionField: [{ position: 20 }]
   Purchaseorder;
  

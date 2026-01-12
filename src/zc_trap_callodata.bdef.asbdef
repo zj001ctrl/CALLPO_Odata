@@ -18,5 +18,6 @@ use etag
   use action Prepare;
   use action get;
   use action post;
+  use action Batchpost;
 
 }

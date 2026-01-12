@@ -34,6 +34,7 @@ authorization master ( global )
 
   action get;
   action post;
+  action Batchpost result[1] $self;
   side effects
   {
     action get affects $self;
